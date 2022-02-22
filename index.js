@@ -14,6 +14,7 @@ const {
 
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`)
 
+
 .then(() =>{
     console.log('DB conected')
     
