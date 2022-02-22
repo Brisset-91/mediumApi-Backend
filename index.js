@@ -1,5 +1,5 @@
 // Levantar la app
-// require('dotenv').config()
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 const server = require('./src/server')
@@ -13,7 +13,8 @@ const {
 
 // 'mongodb+srv://brisset:Brisset1234@kodemiaquinceg.nan1p.mongodb.net/kodemia'
 // mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`)
-mongoose.connect(`mongodb+srv://brisset:Brisset1234@kodemiaquinceg.nan1p.mongodb.net/medium`)
+// mongoose.connect(`mongodb+srv://brisset:Brisset1234@kodemiaquinceg.nan1p.mongodb.net/medium`)
+mongoose.connect(`mongodb+srv://erik:kodemia05@erik15js.4zil0.mongodb.net`)
 .then(() =>{
     console.log('DB conected')
     
