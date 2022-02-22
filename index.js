@@ -18,10 +18,9 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
     console.log('DB conected')
     
     server.listen(8080, ()=>{
-        console.log('kodemiaAPI is ready on http//localhost:8080')
+        console.log('medium API is ready on http//localhost:8080')
     })
 })
-
 .catch( error =>{
     console.error('deb connection error: ', error)
 })
