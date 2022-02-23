@@ -1,11 +1,15 @@
 // definir el servidor
-
 const express = require('express')
-// const cors = require('cors')
+const cors = require('cors')
+
+const postsRouter = require('./routes/posts.router')
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
+
+app.use('/posts', postsRouter)
 
 app.get('/', (request,response) => {
     response.json({
@@ -13,5 +17,6 @@ app.get('/', (request,response) => {
         message: 'mediumAPI'
     })
 })
+
 
 module.exports = app

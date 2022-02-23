@@ -14,18 +14,16 @@ const postsSchema = new mongoose.Schema({
   },
   author: {
     type: String,
-    required: false
+    required: true
   },
   dateCreated: {
-    type: Number,
+    type: String,
     min: 1,
     max: 30,
     required: true
   },
   readingTime: {
     type: Number,
-    min: 1,
-    max: 4,
     required: true
   },
   formFile: {
