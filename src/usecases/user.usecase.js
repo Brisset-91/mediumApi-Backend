@@ -14,6 +14,10 @@ async function create(userData) {
     return User.create(userData)
 }
 
+function getAll(){
+    return User.find()
+}
+
 function getById (id) {
     return User.findById(id)
 }
@@ -41,6 +45,7 @@ async function login(email,password){
 
 
 module.exports = {
+    getAll,
     getById,
     UpdateById,
     create,

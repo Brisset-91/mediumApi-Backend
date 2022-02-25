@@ -5,12 +5,12 @@ const userSchema = new mongoose.Schema({
 
     name:{
         type: String,
-        match: /^.*@.*\..*$/,
         require: true
     },
     email:{
         type: String,
         require:true,
+        match: /^.*@.*\..*$/,
         minlenght: 1
     },
     password:{
@@ -21,4 +21,4 @@ const userSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('userDB' , userSchema)
+module.exports = mongoose.model('user' , userSchema)
