@@ -5,6 +5,23 @@ const createError = require('http-errors')
 const router = express.Router()
 const User = require('../usecases/user.usecase')
 
+router.get('/',async(request,response)=>{
+    try {
+        const allUsers = await User.getAll()
+        response.json({
+            ok:true,
+            message: 'Here are all the users',
+            allUsers
+        })
+    } catch (error) {
+        response.status(error.status)
+        response.json({
+            ok:false,
+            error
+        })
+    }
+})
+
 
 router.get('/:id', async (request,response) => {
     try {
