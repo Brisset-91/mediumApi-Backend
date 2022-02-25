@@ -1,10 +1,8 @@
-
 const express = require('express')
 const createError = require('http-errors')
-
 const posts = require('../usecases/posts.usecase')
-
 const router = express.Router()
+const auth = require('../middlewares/auth.middleware')
 
 router.get('/', async (request,response) => {
     try {

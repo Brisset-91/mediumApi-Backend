@@ -1,7 +1,6 @@
 // Levantar la app
 require('dotenv').config()
 const mongoose = require('mongoose')
-
 const server = require('./src/server')
 
 const {
@@ -22,5 +21,5 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
     })
 })
 .catch( error =>{
-    console.error('deb connection error: ', error)
+    console.error('db connection error: ', error)
 })
