@@ -16,7 +16,8 @@ router.get('/:id', async (request,response) => {
     
         response.json({
             ok:true,
-            User: getUser
+            User: getUser,
+            message: "New User"
         })    
     } catch (error) {
         response.status( error.status || 500 )
@@ -32,9 +33,14 @@ router.delete('/:id' , async (request, response) => {
     try {
         const DeleteUser = await User.deleteById(request.params.id)
 
+        if(!DeleteUser){
+            throw new createError (404, 'User not found')
+        }
+
         response.json({
             ok:true,
-            UserDeleted: DeleteUser 
+            UserDeleted: DeleteUser,
+            message: "User Deleted" 
         })
     } catch (error) {
         response.status( error.status || 500 )
@@ -47,12 +53,13 @@ router.delete('/:id' , async (request, response) => {
 
 router.post('/', async (request,response) => {
     try {
-        const NewUser = await User.create(request.body)
+        const NewUser = await User.NewUser(request.body)
         response.json({
             ok: true,
             message: 'User created',
             New_User: NewUser
         })
+        
         
     } catch (error) {
         response.status( error.status || 500 )
@@ -69,7 +76,8 @@ router.patch('/:id' , async(request,response) => {
         const UserUpdated = await User.UpdateById(request.params.id, request.body)
         response.json({
             ok: true,
-            User: UserUpdated
+            User: UserUpdated,
+            message: "User Updated"
         })
         
     } catch (error) {
