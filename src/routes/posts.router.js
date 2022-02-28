@@ -44,14 +44,14 @@ router.get('/:id',  async (request, response) => {
     }
 })
 
-router.post('/',auth, async (request, response) => {
+router.post('/', async (request, response) => {
     try {
         const postsCreated = await posts.create(request.body)
 
         response.json({
             ok: true,
             message: 'Post create',
-            //post: newPost
+            post: postsCreated
         })
         
     } catch (error) {
@@ -63,7 +63,7 @@ router.post('/',auth, async (request, response) => {
     }
 })
 
-router.delete('/:id',auth, async (request, response) => {
+router.delete('/:id', async (request, response) => {
     try {
         const postsDeleted = await posts.deleteById(request.params.id)
         
@@ -88,7 +88,7 @@ router.delete('/:id',auth, async (request, response) => {
     }
 })
 
-router.patch('/:id',auth, async (request, response) => {
+router.patch('/:id', async (request, response) => {
     try {
         const id = request.params.id
         const newPostsData = request.body
