@@ -16,7 +16,9 @@ app.use('/user', usersRouter)
 app.use('/posts', postsRouter)
 app.use('/auth', authRoutes)
 
-app.get('/', (request,response) => {
+const auth = require('./middlewares/auth.middleware')
+
+app.get('/',auth, (request,response) => {
     response.json({
         ok: true,
         message: 'mediumAPI'
