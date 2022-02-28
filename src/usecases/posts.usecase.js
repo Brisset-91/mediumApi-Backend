@@ -13,13 +13,6 @@ function getById(id) {
 
 function create(postsData) {
     const newPost = new Posts(postsData)
-
-    //const errors = newPost.validateSync()
-    /*
-    if (errors) {
-        console.log('errors:')
-        throw new createError(400, 'validation failed')
-    }*/
     return newPost.save()
 }
 
