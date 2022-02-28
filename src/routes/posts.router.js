@@ -41,7 +41,7 @@ router.get('/:id',  async (request, response) => {
     }
 })
 
-router.post('/posts',auth, async (request, response) => {
+router.post('/', auth, async (request, response) => {
     try {
         const postsCreated = await posts.create(request.body)
         response.json({
@@ -58,7 +58,7 @@ router.post('/posts',auth, async (request, response) => {
     }
 })
 
-router.delete('/:id', async (request, response) => {
+router.delete('/:id', auth, async (request, response) => {
     try {
         const postsDeleted = await posts.deleteById(request.params.id)
         if (!postsDeleted) {
@@ -82,7 +82,7 @@ router.delete('/:id', async (request, response) => {
     }
 })
 
-router.patch('/:id', async (request, response) => {
+router.patch('/:id', auth, async (request, response) => {
     try {
         const id = request.params.id
         const newPostsData = request.body
