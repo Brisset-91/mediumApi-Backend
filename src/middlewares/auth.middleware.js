@@ -3,7 +3,7 @@ const jwt = require('../lib/jwt.lib')
 function auth (request, response, next) {
     try {
         const authorization = request.headers.authorization || ''
-        const token = authorization.replace('Bearer', '' )
+        const token = authorization.replace()
         jwt.verify(token)
         next()
     } catch (error) {
