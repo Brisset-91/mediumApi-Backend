@@ -1,15 +1,15 @@
 const express = require('express')
 const createError = require('http-errors')
-const posts = require('../usecases/posts.usecase')
+const cars = require('../usecases/cars.usecase')
 const router = express.Router()
 const auth = require('../middlewares/auth.middleware')
 
 router.get('/', async (request,response) => {
     try {
-        const allPosts = await posts.getAll()
+        const allCars = await cars.getAll()
         response.json({
             ok: true,
-            posts: allPosts
+            posts: allCars
         })
     } catch (error) {
         response.status(400)
@@ -22,15 +22,15 @@ router.get('/', async (request,response) => {
 
 router.get('/:id',  async (request, response) => {
     try {
-        const postsFound = await posts.getById(request.params.id)
-        if (!postsFound) {
-            const error = new Error('posts not found')
+        const carsFound = await cars.getById(request.params.id)
+        if (!carsFound) {
+            const error = new Error('cars not found')
             error.status = 404
             throw error
         }
         response.json({
             ok: true,
-            posts: postsFound
+            cars: carsFound
         })
     } catch (error) {
         response.status(error.status || 500)
@@ -43,11 +43,11 @@ router.get('/:id',  async (request, response) => {
 
 router.post('/', auth, async (request, response) => {
     try {
-        const postsCreated = await posts.create(request.body)
+        const carsCreated = await cars.create(request.body)
         response.json({
             ok: true,
-            message: 'Post create',
-            //post: newPost
+            message: 'Car asigned',
+            cars: carsCreated
         })
     } catch (error) {
         response.status(error.status || 500)
@@ -60,18 +60,18 @@ router.post('/', auth, async (request, response) => {
 
 router.delete('/:id', auth, async (request, response) => {
     try {
-        const postsDeleted = await posts.deleteById(request.params.id)
-        if (!postsDeleted) {
+        const carsDeleted = await cars.deleteById(request.params.id)
+        if (!carsDeleted) {
             response.status(400)
             response.json({
                 ok:false,
-                message: 'posts not found'
+                message: 'car not found'
             })
         }
         response.json({
             ok: true,
-            message: 'Post Deleted',
-            posts: postsDeleted
+            message: 'Car Deleted',
+            cars: carsDeleted
         })
     } catch (error) {
         response.status(400)
@@ -85,20 +85,20 @@ router.delete('/:id', auth, async (request, response) => {
 router.patch('/:id', auth, async (request, response) => {
     try {
         const id = request.params.id
-        const newPostsData = request.body
-        const postsUpdate = await posts.patchByID(id,newPostsData)
-        if (!postsUpdate) {
+        const newCarsData = request.body
+        const carsUpdate = await cars.patchByID(id,newCarsData)
+        if (!carsUpdate) {
             response.status(404)
             response.json({
                 ok: false,
-                message: "posts id not found"
+                message: "car id not found"
             })
             return
         }
         response.json({
             ok: true,
-            message: 'posts updated',
-            posts: postsUpdate
+            message: 'car updated',
+            cars: carsUpdate
         })
     } catch (error) {
         response.status(500)
